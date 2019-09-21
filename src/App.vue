@@ -1,29 +1,38 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+   
+      <!--replace放在router-link处，禁用浏览器前进后退
+          tag可以自定义标签名
+     home   1 为了不被销毁加keep-alive
+            2 保持原来的位置
+          离开时保存一个位置，
+          进来时用这个位置设置了keep-alive离开时要取消可以在 deactivated
+          取消事件，在没有设置的时候用destroy取消
+            
+           
+
+
+          
+      -->
+
+<keep-alive exclude="detail">
+      <router-view/>
+      </keep-alive>
+ <maintabar></maintabar>
+    
+  
   </div>
 </template>
+<script>
+import maintabar from '@/components/tabbar/maintabar'
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  components:{
+   maintabar
   }
 }
+</script>
+<style lang="scss">
+@import './assets/commen/normalize.css';
+
 </style>
